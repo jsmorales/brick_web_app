@@ -1,0 +1,28 @@
+{
+  "name": "brick_web_app",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jsmorales/brick_web_app",
+  "description": "app híbrida de brick, calculadora de materiales de construcción.",
+  "main": "index.html",
+  "keywords": [
+    "brick",
+    "construccion",
+    "calculadora"
+  ],
+  "authors": [
+    "Ing. Johan Morales"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-mobile": "~1.4.5",
+    "requirejs": "~2.1.17",
+    "jquery-mobile-bower": "~1.4.5"
+  }
+}
