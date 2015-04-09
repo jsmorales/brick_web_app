@@ -1,0 +1,24 @@
+{
+  "name": "lokijs",
+  "version": "1.2.4",
+  "main": "[\"src/lokijs.js\"]",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/techfort/LokiJS",
+  "_release": "1.2.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.4",
+    "commit": "86cf9cffa181857dc56c6a5c3dbaa681facc83fe"
+  },
+  "_source": "git://github.com/techfort/LokiJS.git",
+  "_target": "~1.2.4",
+  "_originalSource": "lokijs",
+  "_direct": true
+}

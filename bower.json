@@ -25,6 +25,7 @@
     "requirejs": "~2.1.17",
     "jquery-mobile-bower": "~1.4.5",
     "chocolatechip-ui": "~3.8.0",
-    "bootstrap": "~3.3.4"
+    "bootstrap": "~3.3.4",
+    "taffydb": "*"
   }
 }

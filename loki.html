@@ -13,78 +13,43 @@
   		
   	<script src="app/components/jquery/jquery2.min.js"></script>
   	<script src="app/components/bootstrap/dist/js/bootstrap.js"></script>
-  	<script src="app/components/taffydb/taffy.js"></script>
+  	<script src="app/components/lokijs/src/lokijs.js"></script>
   	
 
   	<script>
 		$(function(){
-			console.log("creando la primera BD con taffy");
-			//---------------------------------------------
-			//base de datos ciudades
-			//var ciudades = TAFFY();
-			//Base con algunos registros
-			var ciudades = TAFFY([
-				{name:"New York",state:"WA"},
-				{name:"Las Vegas",state:"NV"},
-				{name:"Boston",state:"MA"}
-				]);
 
-			ciudades().each(function (r) {
-				console.log(r);
-				//console.log(r.state);
-			});
-			//console.log(ciudades().first().___id);
-			//ciudades().first();
-			//console.log(ciudades);
-			//console.log(ciudades({name:"New York"}));
 
-			//ciudades(function () {return true;});
+			var db = new loki('loki.json');
+			console.log("database creada");
 
-			//ciudades().select("name");
-			//---------------------------------------------
-			//insertar registros con insert
-			ciudades.insert({name:"Portland",state:"OR"});
-			ciudades.insert({name:"Pensilvania",state:"YU"});
-			//console.log("inserta la ciudad portland...");
-			//console.log(ciudades);
-			//---------------------------------------------
-			//mostrando count a la ciudad boston
-			//console.log(ciudades({name:"Boston"}).count());
-			//---------------------------------------------
-			//mostrando los 2 primeros registros de ciudades
-			/*ciudades().limit().each(function (r) {
-				console.log(r.name);
-			});*/
-			/*ciudades().each(function (r) {
-				console.log(r.name);
-				console.log(r.state);
-			});*/
-			//---------------------------------------------
-			//mostrar todos los registros
-			//var ciudad = ciudades().select("name","state");			
-			//console.log(ciudad);
-			//----------------------------------------------
-			/*ciudades({name:"Portland"}).each(function (r) {
-			   console.log(r.name + "!");
-			});*/
-			//---------------------------------------------
-			ciudades().each(function (r) {
-				console.log(r);
-				/**/
-				//console.log(r.state);  'r.name+'-'+r.state+'
-			});
+			var children = db.addCollection('children');
 
-			var ciudad = ciudades().select("name","state");
+			children.insert({name:'Sleipnir', legs: 8});
+			children.insert({name:'Jormungandr', legs: 0});
+			children.insert({name:'Hel', legs: 2});
 
-			$.each(ciudad, function(index, val) {
-				 /* iterate through array or object */
-				 console.log(index+'-'+val);
-				 $("#resultado").append(
-						'<li class="list-group-item">'+val+'</li>'
-					);
-			});
+			children.get(1); // returns Sleipnir 
+			children.find( {'name':'Sleipnir'} );
+			children.find( { legs: { '$gt' : 2 } } );
 
-			
+
+			var legs = children.addDynamicView('legs'); 
+			legs.applyFind( { legs: { '$gt' : 2 } });
+			legs.applySimpleSort('legs');
+			legs.data();
+
+
+			children.mapReduce( 
+			  function( obj ){ return obj.legs; } , 
+			  function( array ) { 
+			    var sum = 0;
+			    for (var i=0; i < array.length; i++ ){ 
+			      sum += array[i];
+			    }
+			    return ( sum / array.length ).toFixed(2);
+			 });
+
 
 
 		});
@@ -113,7 +78,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><!-- este collapse permite el boton de menu -->
 	      	      
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="loki.html">Loki</a></li>
+	        <li><a href="#">Link</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
@@ -130,11 +95,8 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 
-	<h2>Test TaffyDB</h2>
+	<h2>Test LokiJS</h2>
 	
-	<ul id="resultado" class="list-group">
-		
-	</ul>
 
 </body>
 </html>
