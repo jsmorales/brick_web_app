@@ -14,12 +14,7 @@
   	<script src="app/components/jquery/jquery2.min.js"></script>
   	<script src="app/components/bootstrap/dist/js/bootstrap.js"></script>  	
 
-  	<script>
-		$(function(){
-			console.log("jquery bien.");
-
-		});
-	</script>
+  	<script src="js/almacena.js"></script>
 </head>
 <body>
 
@@ -63,7 +58,25 @@
 
 	<h2>Test Web Store API HTML5</h2>
 	<br>
+	<p>Formulario para el manejo del webstorage</p>
 	
+	<hr>
+
+	<div id="formulario">
+		<form>
+		  <div class="form-group">
+		    <label for="clave">Clave</label>
+		    <input type="text" class="form-control" id="clave" placeholder="Introduce la clave del registro">
+		  </div>
+		  <div class="form-group">
+		    <label for="valor">Valor</label>
+		    <input type="text" class="form-control" id="valor" placeholder="Valor del registro">
+		  </div>		  
+		</form>
+		<button id="btn_guardar" class="btn btn-default">Guardar</button>
+	</div>
+	<hr>
+	<ul id="resultado" class="list-group"></ul>
 
 </body>
 </html>
