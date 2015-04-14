@@ -17,7 +17,7 @@ $(function(){
 		//creacion del item
 		sessionStorage.setItem(clave,valor);
 
-		verItem(clave); 
+		verItem(clave);
 
 	}
 
@@ -29,10 +29,22 @@ $(function(){
 		);
 	}
 
+	function verTodo(){
+		$.each(sessionStorage, function(index, val) {
+			 /* iterate through array or object */
+			 console.log("el index es: "+index+" el valor es: "+val);
+			$("#resultado").append(
+				'<li class="list-group-item"> Clave: '+index+'-'+' Valor:'+val+'</li>'
+			);
+		});
+
+	}
 	//---------------------------------------------------------------
 	$("#btn_guardar").click(function(){
 		seteaItem();
 	});
+
+	verTodo();
 	//---------------------------------------------------------------
 
 });
