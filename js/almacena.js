@@ -19,6 +19,8 @@ $(function(){
 
 		verItem(clave);
 
+		$("#form_webstore")[0].reset();
+
 	}
 
 	function verItem(clave){
