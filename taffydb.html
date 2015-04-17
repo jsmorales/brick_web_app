@@ -13,8 +13,82 @@
 
   	<script src="app/components/jquery/jquery2.min.js"></script>
   	<script src="app/components/bootstrap/dist/js/bootstrap.js"></script>
-  	<script src="js/brick_core_p.js"></script>
+  	<script src="app/components/taffydb/taffy.js"></script>
 
+
+  	<script>
+		$(function(){
+			console.log("creando la primera BD con taffy");
+			//---------------------------------------------
+			//base de datos ciudades
+			//var ciudades = TAFFY();
+			//Base con algunos registros
+			var ciudades = TAFFY([
+				{name:"New York",state:"WA"},
+				{name:"Las Vegas",state:"NV"},
+				{name:"Boston",state:"MA"}
+				]);
+
+			ciudades().each(function (r) {
+				console.log(r);
+				//console.log(r.state);
+			});
+			//console.log(ciudades().first().___id);
+			//ciudades().first();
+			//console.log(ciudades);
+			//console.log(ciudades({name:"New York"}));
+
+			//ciudades(function () {return true;});
+
+			//ciudades().select("name");
+			//---------------------------------------------
+			//insertar registros con insert
+			ciudades.insert({name:"Portland",state:"OR"});
+			ciudades.insert({name:"Pensilvania",state:"YU"});
+			//console.log("inserta la ciudad portland...");
+			//console.log(ciudades);
+			//---------------------------------------------
+			//mostrando count a la ciudad boston
+			//console.log(ciudades({name:"Boston"}).count());
+			//---------------------------------------------
+			//mostrando los 2 primeros registros de ciudades
+			/*ciudades().limit().each(function (r) {
+				console.log(r.name);
+			});*/
+			/*ciudades().each(function (r) {
+				console.log(r.name);
+				console.log(r.state);
+			});*/
+			//---------------------------------------------
+			//mostrar todos los registros
+			//var ciudad = ciudades().select("name","state");
+			//console.log(ciudad);
+			//----------------------------------------------
+			/*ciudades({name:"Portland"}).each(function (r) {
+			   console.log(r.name + "!");
+			});*/
+			//---------------------------------------------
+			ciudades().each(function (r) {
+				console.log(r);
+				/**/
+				//console.log(r.state);  'r.name+'-'+r.state+'
+			});
+
+			var ciudad = ciudades().select("name","state");
+
+			$.each(ciudad, function(index, val) {
+				 /* iterate through array or object */
+				 console.log(index+'-'+val);
+				 $("#resultado").append(
+						'<li class="list-group-item">'+val+'</li>'
+					);
+			});
+
+
+
+
+		});
+	</script>
 </head>
 <body>
 
@@ -58,26 +132,14 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 
-	<h2>Inicio de Brick</h2>
+	<h2>Test TaffyDB</h2>
 	<br>
-	<p>Inicio de un brick pequeño con calculos sin base de datos permanente.</p>
-	<hr>
-	<h2>Creación de Ladrillo</h2>
-	<!-- -->
+	<p>Esta lista es cargada desde una BD taffy.</p>
+	<p>Para crear una base de datos se escribe:</p>
+	<p>var nom_bd = TAFFY();</p>
+	<ul id="resultado" class="list-group">
 
-	<form id="form_ladrillo">
-	  <div class="form-group">
-	    <label for="alt_lad">Alto</label>
-	    <input id="alt_lad" type="text" class="form-control" placeholder="Alto del ladrillo">
-	  </div>
-		<div class="form-group">
-	    <label for="anch_lad">Ancho</label>
-	    <input id="anch_lad" type="text" class="form-control" placeholder="Ancho del ladrillo">
-	  </div>
-	</form>
-	<button id="btn_crear_lad" class="btn btn-success">Crear</button>
-
-	<ul id="resultado" class="list-group"></ul>
+	</ul>
 
 </body>
 </html>
